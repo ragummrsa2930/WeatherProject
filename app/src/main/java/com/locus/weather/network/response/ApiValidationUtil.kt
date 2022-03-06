@@ -21,11 +21,12 @@ object ApiValidationUtil {
         context: Context,
         defaultStatusCode: Int = HTTP_INTERNAL_ERROR
     ): ApiServiceException {
-        Log.d(TAG, "exception new  ---> $e")
         val defaultMessage = context.getString(R.string.something_went_wrong)
         when (e) {
             is HttpException -> return try {
-                ApiServiceException(getErrorMessage(e.response()!!, context.getString(R.string.something_went_wrong)), e.code())
+                val msg = getErrorMessage(e.response()!!, context.getString(R.string.something_went_wrong))
+                Log.d(TAG, "msg $msg")
+                ApiServiceException(msg, e.code())
             } catch (ex: Exception) {
                 ApiServiceException(ex.message ?: defaultMessage, e.code())
             }

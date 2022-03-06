@@ -49,8 +49,8 @@ class WeatherActivity : AppCompatActivity() {
                 }
                 Status.ERROR ->{
                     cancelLoading()
-                    if(it.data?.error?.code == 400){
-                        showErrorPopup(it.data)
+                    if(it.exception?.statusCode == 400){
+                        showErrorPopup(it.exception.errorMessage)
                     }else{
                         Toast.makeText(this, R.string.something_went_wrong, Toast.LENGTH_LONG).show()
                     }
@@ -96,23 +96,18 @@ class WeatherActivity : AppCompatActivity() {
         }
     }
 
-    private fun showErrorPopup(data: ResponseModel?) {
-        if(data?.error != null){
-            this.let {
-                val builder = AlertDialog.Builder(it)
-                builder.apply {
-                    setPositiveButton(R.string.ok,
-                        DialogInterface.OnClickListener { dialog, id ->
-                            dialog.cancel()
-                            finish()
-                        })
-                }
-                builder.setMessage(data.error.message)
-                builder.create()
-            }
-        }else{
-            Toast.makeText(this, R.string.something_went_wrong, Toast.LENGTH_LONG).show()
+    private fun showErrorPopup(data: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.apply {
+            setPositiveButton(R.string.ok,
+                DialogInterface.OnClickListener { dialog, id ->
+                    dialog.cancel()
+                    finish()
+                })
         }
+        builder.setMessage(data)
+        builder.create()
+        builder.show()
     }
 
 
