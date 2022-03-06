@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="cityname">City Name</string>
+    <string name="lookup">Lookup</string>
+    <string name="something_went_wrong">"Something went wrong "</string>
+    <string name="feel">Feels Like: %1$.2f</string>
+    <string name="hum">Humidity: %1$d</string>
+    <string name="temp">Temp: %1$.2f</string>
+    <string name="ok">Ok</string>
+    <string name="please_wait">Fetching Weather Info</string>
+    <string name="no_network_connection">No Network connection</string>
+    <string name="unable_reach_server">Unable to reach server</string>
+    <string name="connection_timeout">Connection time out</string>
+</resources>
